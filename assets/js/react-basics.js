@@ -157,7 +157,7 @@ Now this will be useful
 
 */
   return (
-    <div>
+    <div className="container d-flex flex-column align-items-center">
       <div className="d-flex flex-wrap justify-content-center my-3">
         <button className="btn btn-primary m-1" onClick={handleDeckClick}>
           {deck.length > 0 ? "Deal a Card" : "No Cards Remaining"}

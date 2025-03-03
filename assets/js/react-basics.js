@@ -75,3 +75,14 @@ const App = () => {
     setSelectedCardIndex(null);
   };
 };
+
+//I need to add deal5 as well as deal7 buttons to the app and their functionalities
+
+const dealingCards = () => {
+  const newCardDeck = shuffleArray([deck, hand]);
+  //dealt array
+  for (let i = 0; i < num || newCardDeck.length; i++) {
+    const randomIndes = Math.floor(Math.random() * newCardDeck.length);
+    newCardDeck.splice(randomIndex, 1);
+  }
+};

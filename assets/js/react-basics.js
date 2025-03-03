@@ -60,3 +60,18 @@ const Card = ({ card, onClick, isSelected }) => (
 //   Regroup
 // </button>
 // </div>
+
+const App = () => {
+  const [deck, setDeck] = React.useState(shuffleArray(generateDeck())); // Create a deck and shuffle, it before its displayed
+  const [hand, setHand] = React.useState([]);
+  const [selectedCardIndex, setSelectedCardIndex] = React.useState(null);
+
+  const handleDeckClick = () => {
+    if (deck.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * deck.length); // Randomly select a card from the deck.
+    const card = deck[randomIndex];
+    setHand((prev) => [...prev, card]);
+    setDeck((prev) => prev.filter((_, idx) => idx !== randomIndex)); // Filter the deck to remove the drawn card.
+    setSelectedCardIndex(null);
+  };
+};

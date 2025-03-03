@@ -20,3 +20,15 @@ const values = [
 
 // We can generate a class to create card object of 52 cards. Later a new deck can be created by creating an object of this class.
 //Then we can shuffle the deck and draw a card from the deck.. or create a new deck and shuffle it and draw a card.
+
+// <div>
+// <button className="btn btn-danger m-1" onClick={}>
+//   Toss
+// </button>
+// <button className="btn btn-secondary m-1" onClick={}>
+//   Wildcard
+// </button>
+// <button className="btn btn-success m-1" onClick={}>
+//   Regroup
+// </button>
+// </div>

@@ -65,7 +65,7 @@ const App = () => {
 
   //I need to add deal5 as well as deal7 buttons to the app and their functionalities
 
-  const dealingCards = () => {
+  const dealingCards = (num) => {
     const dealt = [];
     const newCardDeck = shuffleArray([...deck, ...hand]);
     for (let i = 0; i < num && newCardDeck.length; i++) {
@@ -162,10 +162,10 @@ Now this will be useful
         <button className="btn btn-primary m-1" onClick={handleDeckClick}>
           {deck.length > 0 ? "Deal a Card" : "No Cards Remaining"}
         </button>
-        <button className="btn btn-info m-1" onClick={() => dealCards(5)}>
+        <button className="btn btn-info m-1" onClick={() => dealingCards(5)}>
           Deal 5
         </button>
-        <button className="btn btn-info m-1" onClick={() => dealCards(7)}>
+        <button className="btn btn-info m-1" onClick={() => dealingCards(7)}>
           Deal 7
         </button>
         <button className="btn btn-warning m-1" onClick={resetHand}>

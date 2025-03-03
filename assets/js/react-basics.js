@@ -79,13 +79,38 @@ const App = () => {
 //I need to add deal5 as well as deal7 buttons to the app and their functionalities
 
 const dealingCards = () => {
-  const newCardDeck = shuffleArray([deck, hand]);
-  //dealt array
-  for (let i = 0; i < num || newCardDeck.length; i++) {
+  const dealt = [];
+  const newCardDeck = shuffleArray([...deck, ...hand]);
+  for (let i = 0; i < num && newCardDeck.length; i++) {
     const randomIndes = Math.floor(Math.random() * newCardDeck.length);
-    newCardDeck.splice(randomIndex, 1);
+    dealt.push(newCardDeck[randomIndes]);
+    newCardDeck.splice(randomIndes, 1);
     console.log(newCardDeck);
   }
+  setDeck(newCardDeck);
+  setHand(dealt);
+  setSelectedCardIndex(null);
 };
 
 // I need to add resetHand, tossCard and regroupHand functions to the app and their functions as well for the buttons.
+const resetHand = () => {
+  setDeck(shuffleArray([...deck, ...hand]));
+  setHand([]);
+  setSelectedCardIndex(null);
+};
+
+const tossCard = () => {
+  if (selectedCardIndex !== null) {
+    setHand((prev) => prev.filter((_, idx) => idx !== selectedCardIndex));
+    setSelectedCardIndex(null);
+  }
+};
+
+const regroupHand = () => {
+  setHand(shuffleArray(hand));
+  setSelectedCardIndex(null);
+};
+//New function to add a card selection and swapping fncs.
+// if the card is selected, then swap the card with the selected card.
+
+//if card index = null then select the card. or else card index = index set, later add new fnc to fix newhand using mapping

@@ -114,3 +114,21 @@ const regroupHand = () => {
 // if the card is selected, then swap the card with the selected card.
 
 //if card index = null then select the card. or else card index = index set, later add new fnc to fix newhand using mapping
+const handleCardClick = (index) => {
+  if (selectedCardIndex === null) {
+    setSelectedCardIndex(index);
+  } else if (selectedCardIndex === index) {
+    setSelectedCardIndex(null);
+  } else {
+    setHand((prev) => {
+      const newHand = [...prev]; // Copy the hand array.
+      [newHand[selectedCardIndex], newHand[index]] = [
+        // Swap the selected card with the new card, using the index and if else conditions.
+        newHand[index],
+        newHand[selectedCardIndex],
+      ];
+      return newHand;
+    });
+    setSelectedCardIndex(null);
+  }
+};

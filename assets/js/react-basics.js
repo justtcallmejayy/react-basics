@@ -20,6 +20,34 @@ const values = [
 
 // We can generate a class to create card object of 52 cards. Later a new deck can be created by creating an object of this class.
 //Then we can shuffle the deck and draw a card from the deck.. or create a new deck and shuffle it and draw a card.
+const generateDeck = () => {
+  const deck = [];
+  let id = 1;
+  for (let suit of suits) {
+    for (let value of values) {
+      deck.push({ id: id++, suit, value }); // Push the card object to the deck array.
+    }
+  }
+  return deck;
+};
+const shuffleArray = (array) => {
+  const newArr = array.slice();
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // Randomly shuffle the cards.
+    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+  } // Return the array for the shuffled deck.
+  return newArr;
+};
+
+const Card = ({ card, onClick, isSelected }) => (
+  <div // Created literals for the card object.
+    className={`card ${isSelected ? "selected" : ""}`} // If the card is selected, then add the selected class to the card.
+    onClick={onClick} // Also, add the onClick event to the card.
+  >
+    <div>{card.value}</div>
+    <div>{card.suit}</div>
+  </div>
+);
 
 // <div>
 // <button className="btn btn-danger m-1" onClick={}>

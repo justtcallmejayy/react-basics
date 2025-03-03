@@ -3,9 +3,53 @@
 /* CSS for the body */
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
-  padding: 0;
   background-color: whitesmoke;
 }
 
-/* CSS for the main */
+/* CSS for the main & butttons*/
+.deck {
+  width: 150px;
+  height: 200px;
+  background-color: #2e3d49;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+.no-cards {
+  width: 150px;
+  height: 200px;
+  background-color: #aaa;
+  border-radius: 8px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hand {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  width: 80px;
+  height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: white;
+  transition: transform 0.2s, border 0.2s;
+}
+.card.selected {
+  border: 2px solid red;
+  transform: scale(1.1);
+}

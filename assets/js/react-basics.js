@@ -158,34 +158,33 @@ Now this will be useful
 */
   return (
     <div>
-      <h1 className="text-center">React Card Deck</h1>
       <div className="d-flex flex-wrap justify-content-center my-3">
         <button className="btn btn-primary m-1" onClick={handleDeckClick}>
           {deck.length > 0 ? "Deal a Card" : "No Cards Remaining"}
         </button>
-        <button className="btn btn-info m-1" onClick={() => dealingCards(5)}>
+        <button className="btn btn-info m-1" onClick={() => dealCards(5)}>
           Deal 5
         </button>
-        <button className="btn btn-dark m-1" onClick={() => dealingCards(7)}>
+        <button className="btn btn-info m-1" onClick={() => dealCards(7)}>
           Deal 7
         </button>
-        <button className="btn btn-dark m-1" onClick={resetHand}>
+        <button className="btn btn-warning m-1" onClick={resetHand}>
           Reset
         </button>
       </div>
       <div className="d-flex flex-wrap justify-content-center my-3">
-        <button className="btn btn-success m-1" onClick={tossCard}>
+        <button className="btn btn-danger m-1" onClick={tossCard}>
           Toss
         </button>
-        <button className="btn btn-dark m-1" onClick={addWildcard}>
+        <button className="btn btn-secondary m-1" onClick={addWildcard}>
           Wildcard
         </button>
-        <button className="btn btn-dark m-1" onClick={regroupHand}>
+        <button className="btn btn-success m-1" onClick={regroupHand}>
           Regroup
         </button>
       </div>
       {/* Deck display */}
-      <div className="d-flex my-1">
+      <div className="d-flex justify-content-center my-3">
         <div className="deck" onClick={handleDeckClick}>
           {deck.length > 0 ? (
             "Deck"
@@ -194,8 +193,8 @@ Now this will be useful
           )}
         </div>
       </div>
-      {/*Hand display */}
-      <div className="hand d-flex">
+      {/* Hand display */}
+      <div className="hand d-flex justify-content-center">
         {hand.map((card, index) => (
           <Card
             key={card.id}

@@ -49,18 +49,6 @@ const Card = ({ card, onClick, isSelected }) => (
   </div>
 );
 
-// <div>
-// <button className="btn btn-danger m-1" onClick={}>
-//   Toss
-// </button>
-// <button className="btn btn-secondary m-1" onClick={}>
-//   Wildcard
-// </button>
-// <button className="btn btn-success m-1" onClick={}>
-//   Regroup
-// </button>
-// </div>
-
 const App = () => {
   const [deck, setDeck] = React.useState(shuffleArray(generateDeck())); // Create a deck and shuffle, it before its displayed
   const [hand, setHand] = React.useState([]);
@@ -132,3 +120,33 @@ const handleCardClick = (index) => {
     setSelectedCardIndex(null);
   }
 };
+
+//Now need to add the fnc for wild card(the most challenging part of the project, as teh wildcard will also generate teh rest of the buttons and their functionalities)
+//The wild card will be the card with mvc
+
+/*
+6 buttons, with onlick and likned fncs.
+1. Deal 5
+2. Deal 7
+3. Reset Hand
+4. Toss Card
+5. Regroup Hand
+6. Wild Card
+
+and displaying usinf hand.map
+
+Now this will be useful
+
+<div>
+<button className="btn btn-danger m-1" onClick={}>
+  Toss
+</button>
+<button className="btn btn-secondary m-1" onClick={}>
+  Wildcard
+</button>
+<button className="btn btn-success m-1" onClick={}>
+  Regroup
+</button>
+</div>
+
+*/

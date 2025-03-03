@@ -3,14 +3,25 @@
 /* CSS for the body */
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: whitesmoke;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  margin: 0;
+  padding: 20px;
 }
 
-/* CSS for the main & butttons*/
+.divHeight {
+  height: 100vh;
+}
+
+/* CSS for the main & buttons */
 .deck {
   width: 150px;
   height: 200px;
-  background-color: #2e3d49;
+  background: linear-gradient(
+    135deg,
+    #3a506b,
+    #1a2b4c
+  ); /* modern gradient for deck */
   border-radius: 8px;
   color: white;
   display: flex;
@@ -18,27 +29,39 @@ body {
   justify-content: center;
   cursor: pointer;
   user-select: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
 }
+
+.deck:hover {
+  transform: translateY(-5px);
+}
+
 .no-cards {
   width: 150px;
   height: 200px;
-  background-color: #aaa;
+  background: #aaa;
   border-radius: 8px;
   color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .hand {
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* added gap for spacing between cards */
 }
+
 .card {
   width: 80px;
   height: 120px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -47,9 +70,15 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
   background-color: white;
-  transition: transform 0.2s, border 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
 }
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .card.selected {
-  border: 2px solid red;
+  border: 2px solid #ff6347; /* tomato color for selected card */
   transform: scale(1.1);
 }

@@ -62,69 +62,75 @@ const App = () => {
     setDeck((prev) => prev.filter((_, idx) => idx !== randomIndex)); // Filter the deck to remove the drawn card.
     setSelectedCardIndex(null);
   };
-};
 
-//I need to add deal5 as well as deal7 buttons to the app and their functionalities
+  //I need to add deal5 as well as deal7 buttons to the app and their functionalities
 
-const dealingCards = () => {
-  const dealt = [];
-  const newCardDeck = shuffleArray([...deck, ...hand]);
-  for (let i = 0; i < num && newCardDeck.length; i++) {
-    const randomIndes = Math.floor(Math.random() * newCardDeck.length);
-    dealt.push(newCardDeck[randomIndes]);
-    newCardDeck.splice(randomIndes, 1);
-    console.log(newCardDeck);
-  }
-  setDeck(newCardDeck);
-  setHand(dealt);
-  setSelectedCardIndex(null);
-};
-
-// I need to add resetHand, tossCard and regroupHand functions to the app and their functions as well for the buttons.
-const resetHand = () => {
-  setDeck(shuffleArray([...deck, ...hand]));
-  setHand([]);
-  setSelectedCardIndex(null);
-};
-
-const tossCard = () => {
-  if (selectedCardIndex !== null) {
-    setHand((prev) => prev.filter((_, idx) => idx !== selectedCardIndex));
+  const dealingCards = () => {
+    const dealt = [];
+    const newCardDeck = shuffleArray([...deck, ...hand]);
+    for (let i = 0; i < num && newCardDeck.length; i++) {
+      const randomIndes = Math.floor(Math.random() * newCardDeck.length);
+      dealt.push(newCardDeck[randomIndes]);
+      newCardDeck.splice(randomIndes, 1);
+      console.log(newCardDeck);
+    }
+    setDeck(newCardDeck);
+    setHand(dealt);
     setSelectedCardIndex(null);
-  }
-};
+  };
 
-const regroupHand = () => {
-  setHand(shuffleArray(hand));
-  setSelectedCardIndex(null);
-};
-//New function to add a card selection and swapping fncs.
-// if the card is selected, then swap the card with the selected card.
-
-//if card index = null then select the card. or else card index = index set, later add new fnc to fix newhand using mapping
-const handleCardClick = (index) => {
-  if (selectedCardIndex === null) {
-    setSelectedCardIndex(index);
-  } else if (selectedCardIndex === index) {
+  // I need to add resetHand, tossCard and regroupHand functions to the app and their functions as well for the buttons.
+  const resetHand = () => {
+    setDeck(shuffleArray([...deck, ...hand]));
+    setHand([]);
     setSelectedCardIndex(null);
-  } else {
-    setHand((prev) => {
-      const newHand = [...prev]; // Copy the hand array.
-      [newHand[selectedCardIndex], newHand[index]] = [
-        // Swap the selected card with the new card, using the index and if else conditions.
-        newHand[index],
-        newHand[selectedCardIndex],
-      ];
-      return newHand;
-    });
+  };
+
+  const tossCard = () => {
+    if (selectedCardIndex !== null) {
+      setHand((prev) => prev.filter((_, idx) => idx !== selectedCardIndex));
+      setSelectedCardIndex(null);
+    }
+  };
+
+  const regroupHand = () => {
+    setHand(shuffleArray(hand));
     setSelectedCardIndex(null);
-  }
-};
+  };
+  //New function to add a card selection and swapping fncs.
+  // if the card is selected, then swap the card with the selected card.
 
-//Now need to add the fnc for wild card(the most challenging part of the project, as teh wildcard will also generate teh rest of the buttons and their functionalities)
-//The wild card will be the card with mvc
+  //if card index = null then select the card. or else card index = index set, later add new fnc to fix newhand using mapping
+  const handleCardClick = (index) => {
+    if (selectedCardIndex === null) {
+      setSelectedCardIndex(index);
+    } else if (selectedCardIndex === index) {
+      setSelectedCardIndex(null);
+    } else {
+      setHand((prev) => {
+        const newHand = [...prev]; // Copy the hand array.
+        [newHand[selectedCardIndex], newHand[index]] = [
+          // Swap the selected card with the new card, using the index and if else conditions.
+          newHand[index],
+          newHand[selectedCardIndex],
+        ];
+        return newHand;
+      });
+      setSelectedCardIndex(null);
+    }
+  };
+  const addWildcard = () => {
+    const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+    const randomValue = values[Math.floor(Math.random() * values.length)];
+    // Use Date.now() as a unique id for the wildcard card.
+    const wildcard = { id: Date.now(), suit: randomSuit, value: randomValue };
+    setHand((prev) => [...prev, wildcard]);
+  };
 
-/*
+  //Now need to add the fnc for wild card(the most challenging part of the project, as teh wildcard will also generate teh rest of the buttons and their functionalities)
+  //The wild card will be the card with mvc
+
+  /*
 6 buttons, with onlick and likned fncs.
 1. Deal 5
 2. Deal 7
@@ -150,3 +156,57 @@ Now this will be useful
 </div>
 
 */
+  return (
+    <div>
+      <h1 className="text-center">React Card Deck</h1>
+      <div className="d-flex flex-wrap justify-content-center my-3">
+        <button className="btn btn-primary m-1" onClick={handleDeckClick}>
+          {deck.length > 0 ? "Deal a Card" : "No Cards Remaining"}
+        </button>
+        <button className="btn btn-info m-1" onClick={() => dealingCards(5)}>
+          Deal 5
+        </button>
+        <button className="btn btn-dark m-1" onClick={() => dealingCards(7)}>
+          Deal 7
+        </button>
+        <button className="btn btn-dark m-1" onClick={resetHand}>
+          Reset
+        </button>
+      </div>
+      <div className="d-flex flex-wrap justify-content-center my-3">
+        <button className="btn btn-success m-1" onClick={tossCard}>
+          Toss
+        </button>
+        <button className="btn btn-dark m-1" onClick={addWildcard}>
+          Wildcard
+        </button>
+        <button className="btn btn-dark m-1" onClick={regroupHand}>
+          Regroup
+        </button>
+      </div>
+      {/* Deck display */}
+      <div className="d-flex my-1">
+        <div className="deck" onClick={handleDeckClick}>
+          {deck.length > 0 ? (
+            "Deck"
+          ) : (
+            <div className="no-cards">No Cards Remaining</div>
+          )}
+        </div>
+      </div>
+      {/*Hand display */}
+      <div className="hand d-flex">
+        {hand.map((card, index) => (
+          <Card
+            key={card.id}
+            card={card}
+            onClick={() => handleCardClick(index)}
+            isSelected={index === selectedCardIndex}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));

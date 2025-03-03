@@ -84,5 +84,8 @@ const dealingCards = () => {
   for (let i = 0; i < num || newCardDeck.length; i++) {
     const randomIndes = Math.floor(Math.random() * newCardDeck.length);
     newCardDeck.splice(randomIndex, 1);
+    console.log(newCardDeck);
   }
 };
+
+// I need to add resetHand, tossCard and regroupHand functions to the app and their functions as well for the buttons.

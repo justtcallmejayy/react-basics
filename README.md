@@ -38,3 +38,4 @@ React Card Deck is a web application built using ReactJS with function component
 
 1. **Clone the Repository:**
    ```bash
+   https://github.com/justtcallmejayy/react-basics.git
